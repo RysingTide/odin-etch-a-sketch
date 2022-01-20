@@ -33,7 +33,7 @@ clearBtn.addEventListener('click', () => {
   });
 })
 
-genBoard(32);
+genBoard(100);
 
 
 
