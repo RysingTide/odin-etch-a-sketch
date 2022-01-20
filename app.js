@@ -10,7 +10,7 @@ function genBoard(val) {
   for (let i = 0; i < val; i++) {
     const row = document.createElement('div');
     row.classList.add('row');
-    for (let j = 0; j <= val; j++) {
+    for (let j = 0; j < val; j++) {
       const cell = document.createElement('div');
       cell.classList.add('container-cell');
       row.appendChild(cell);
@@ -33,7 +33,7 @@ clearBtn.addEventListener('click', () => {
   });
 })
 
-genBoard(100);
+genBoard(3);
 
 
 
