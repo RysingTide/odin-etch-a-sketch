@@ -12,6 +12,8 @@ body {
 
 button {
   margin: 5px 0;
+  width: 70px;
+  height: 25px;
 }
 
 .slider {
@@ -28,6 +30,11 @@ button {
   height: 500px;
   width: 500px;
   display: flex;
+}
+
+.btn-container {
+  display: flex;
+  gap: 5px;
 }
 
 .row {

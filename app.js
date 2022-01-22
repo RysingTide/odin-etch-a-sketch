@@ -1,12 +1,20 @@
 const container = document.querySelector('.container');
+const btnContainer = document.querySelector('.btn-container');
 const body = document.querySelector('body');
 const clearBtn = document.createElement('button');
 const slider = document.querySelector('.slider');
 const sliderVal = document.querySelector('.slider-val');
+const rgbBtn = document.createElement('button');
+const shaderBtn = document.createElement('button');
+
+rgbBtn.innerText = 'rgb';
+btnContainer.appendChild(rgbBtn);
+
+shaderBtn.innerText = 'Shader';
+btnContainer.appendChild(shaderBtn);
 
 clearBtn.innerText = 'Clear';
-clearBtn.style.padding = '5px 15px';
-body.insertBefore(clearBtn, container);
+btnContainer.appendChild(clearBtn);
 
 function genBoard(num) {
   for (let i = 0; i < num; i++) {
@@ -42,7 +50,7 @@ clearBtn.addEventListener('click', () => {
   genBoard(slider.value);
 })
 
-slider.addEventListener('change', () => {
+slider.addEventListener('mousemove', () => {
   clear();
   while (container.firstChild) container.removeChild(container.firstChild); 
   genBoard(slider.value);
