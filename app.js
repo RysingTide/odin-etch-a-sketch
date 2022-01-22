@@ -3,9 +3,7 @@ const btnContainer = document.querySelector('.btn-container');
 const body = document.querySelector('body');
 const writeBtn = document.createElement('button');
 const clearBtn = document.createElement('button');
-const rgbBtn = document.createElement('button');
-const shaderBtn = document.createElement('button');
-const lightenBtn = document.createElement('button');
+const rgbaBtn = document.createElement('button');
 const erasorBtn = document.createElement('button');
 const slider = document.querySelector('.slider');
 const sliderVal = document.querySelector('.slider-val');
@@ -16,14 +14,8 @@ btnContainer.appendChild(writeBtn);
 erasorBtn.innerText = 'Erasor';
 btnContainer.appendChild(erasorBtn);
 
-rgbBtn.innerText = 'Rainbow';
-btnContainer.appendChild(rgbBtn);
-
-shaderBtn.innerText = 'Shader';
-btnContainer.appendChild(shaderBtn);
-
-lightenBtn.innerText = 'Lighten';
-btnContainer.appendChild(lightenBtn);
+rgbaBtn.innerText = 'Rainbow';
+btnContainer.appendChild(rgbaBtn);
 
 clearBtn.innerText = 'Clear';
 btnContainer.appendChild(clearBtn);
@@ -40,6 +32,9 @@ function genBoard(num) {
       writeBtn.addEventListener('click', () => {
         write(cell);
       })
+      rgbaBtn.addEventListener('click', () => {
+        rgba(cell);
+      })
       erasorBtn.addEventListener('click', () => {
         erase(cell);
       })
@@ -51,20 +46,32 @@ function genBoard(num) {
 
 function write(cell) {
   cell.addEventListener('mouseover', () => {
-    cell.classList.add('background');
+    cell.style.background = 'black';
   });
+}
+
+function rgba(cell) {
+  color = () => {
+  let o = Math.round;
+  let r = Math.random;
+  let s = 255;
+    return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+  }
+  cell.addEventListener('mouseover', () => {
+    cell.style.background = `${color()}`;
+  })
 }
 
 function erase(cell) {
   cell.addEventListener('mouseover', () => {
-    cell.classList.remove('background');
+    cell.style.background = 'white';
   });
 }
 
 function clear() {
   cells = document.querySelectorAll('.background');
   cells.forEach((cell) => {
-    cell.classList.remove('background');
+    cell.style.background.remove;
   });
 }
 
@@ -72,13 +79,15 @@ clearBtn.addEventListener('click', () => {
   clear();
   while (container.firstChild) container.removeChild(container.firstChild); 
   genBoard(slider.value);
-})
+});
 
 slider.addEventListener('input', () => {
   clear();
   while (container.firstChild) container.removeChild(container.firstChild); 
   genBoard(slider.value);
-})
+});
+
+genBoard(slider.value);
 
 
 
