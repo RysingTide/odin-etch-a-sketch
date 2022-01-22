@@ -1,16 +1,17 @@
 const container = document.querySelector('.container');
 const body = document.querySelector('body');
 const clearBtn = document.createElement('button');
+const slider = document.querySelector('.slider');
 
 clearBtn.innerText = 'Clear';
 clearBtn.style.padding = '5px 15px';
 body.insertBefore(clearBtn, container);
 
-function genBoard(val) {
-  for (let i = 0; i < val; i++) {
+function genBoard(num) {
+  for (let i = 0; i < num; i++) {
     const row = document.createElement('div');
     row.classList.add('row');
-    for (let j = 0; j < val; j++) {
+    for (let j = 0; j < num; j++) {
       const cell = document.createElement('div');
       cell.classList.add('container-cell');
       row.appendChild(cell);
@@ -26,18 +27,24 @@ function write(cell) {
   });
 }
 
-clearBtn.addEventListener('click', () => {
+function clear() {
   cells = document.querySelectorAll('.background');
   cells.forEach((cell) => {
     cell.classList.remove('background');
   });
+}
+
+clearBtn.addEventListener('click', () => {
+  clear();
+  while (container.firstChild) container.removeChild(container.firstChild); 
+  genBoard(slider.value);
 })
 
-genBoard(3);
-
-
-
-
+slider.addEventListener('change', () => {
+  clear();
+  while (container.firstChild) container.removeChild(container.firstChild); 
+  genBoard(slider.value);
+})
 
 
 
