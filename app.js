@@ -2,6 +2,7 @@ const container = document.querySelector('.container');
 const body = document.querySelector('body');
 const clearBtn = document.createElement('button');
 const slider = document.querySelector('.slider');
+const sliderVal = document.querySelector('.slider-val');
 
 clearBtn.innerText = 'Clear';
 clearBtn.style.padding = '5px 15px';
@@ -19,6 +20,7 @@ function genBoard(num) {
     }
     container.appendChild(row);
   }
+  sliderVal.innerText = `${slider.value} x ${slider.value}`;
 }
 
 function write(cell) {
@@ -45,6 +47,8 @@ slider.addEventListener('change', () => {
   while (container.firstChild) container.removeChild(container.firstChild); 
   genBoard(slider.value);
 })
+
+genBoard(slider.value);
 
 
 
