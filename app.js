@@ -1,17 +1,29 @@
 const container = document.querySelector('.container');
 const btnContainer = document.querySelector('.btn-container');
 const body = document.querySelector('body');
+const writeBtn = document.createElement('button');
 const clearBtn = document.createElement('button');
-const slider = document.querySelector('.slider');
-const sliderVal = document.querySelector('.slider-val');
 const rgbBtn = document.createElement('button');
 const shaderBtn = document.createElement('button');
+const lightenBtn = document.createElement('button');
+const erasorBtn = document.createElement('button');
+const slider = document.querySelector('.slider');
+const sliderVal = document.querySelector('.slider-val');
 
-rgbBtn.innerText = 'rgb';
+writeBtn.innerText = 'Write';
+btnContainer.appendChild(writeBtn);
+
+erasorBtn.innerText = 'Erasor';
+btnContainer.appendChild(erasorBtn);
+
+rgbBtn.innerText = 'Rainbow';
 btnContainer.appendChild(rgbBtn);
 
 shaderBtn.innerText = 'Shader';
 btnContainer.appendChild(shaderBtn);
+
+lightenBtn.innerText = 'Lighten';
+btnContainer.appendChild(lightenBtn);
 
 clearBtn.innerText = 'Clear';
 btnContainer.appendChild(clearBtn);
@@ -25,6 +37,12 @@ function genBoard(num) {
       cell.classList.add('container-cell');
       row.appendChild(cell);
       write(cell);
+      writeBtn.addEventListener('click', () => {
+        write(cell);
+      })
+      erasorBtn.addEventListener('click', () => {
+        erase(cell);
+      })
     }
     container.appendChild(row);
   }
@@ -34,6 +52,12 @@ function genBoard(num) {
 function write(cell) {
   cell.addEventListener('mouseover', () => {
     cell.classList.add('background');
+  });
+}
+
+function erase(cell) {
+  cell.addEventListener('mouseover', () => {
+    cell.classList.remove('background');
   });
 }
 
@@ -50,14 +74,11 @@ clearBtn.addEventListener('click', () => {
   genBoard(slider.value);
 })
 
-slider.addEventListener('mousemove', () => {
+slider.addEventListener('input', () => {
   clear();
   while (container.firstChild) container.removeChild(container.firstChild); 
   genBoard(slider.value);
 })
-
-genBoard(slider.value);
-
 
 
 
